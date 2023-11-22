@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Bookshelf;
+use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 
 class BookController extends Controller
 {
@@ -116,6 +118,14 @@ class BookController extends Controller
         );
 
         return redirect()->route('books')->with($notification);
+    }
+
+    public function print_books()
+    {
+        $books = Book::all();
+
+        $pdf = FacadePdf::loadview('books.print', ['books' => $books]);
+        return $pdf->download('data_buku.pdf');
     }
 
 
