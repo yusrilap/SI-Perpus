@@ -52,9 +52,9 @@ class BookController extends Controller
         );
 
         if($request->save == true) {
-            return redirect()->route('book')->with($notification);
+            return redirect()->route('books')->with($notification);
         } else {
-            return redirect()->route('book.create')->with($notification);
+            return redirect()->route('books.create')->with($notification);
         }
     }
 

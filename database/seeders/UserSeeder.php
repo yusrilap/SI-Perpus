@@ -4,9 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
@@ -15,17 +14,23 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $faker = Faker::create('id_ID');
-
-        for($i = 1; $i <= 10; $i++){
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'email_verified_at' => now(),
-                'password' => Hash::make('password'),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }
+        DB::table('users')->insert(
+            [
+                [
+                    'username' => 'user1',
+                    'name' => 'user1',
+                    'email' => 'user1@gmail.com',
+                    // password pakai Hash
+                    'password' => Hash::make('12345678'),
+                ],
+                [
+                    
+                    'username' => 'user2',
+                    'name' => 'user2',
+                    'email' => 'user2@gmail.com',
+                    'password' => Hash::make('12345678'),
+                ]
+            ]
+        );
     }
 }
